@@ -12,7 +12,7 @@ pipeline{
                 then
                     git clone ${repo} 
                 fi
-
+                cd HelloWorldFrontend
                 if ! git remote | grep "origin" > /dev/null
                 then
                     git remote add origin ${repo}
