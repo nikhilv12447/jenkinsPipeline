@@ -9,6 +9,7 @@ pipeline{
                 sh '''
                 ls
                 pwd
+                groups
                 #repo="git@github.com:nikhilv12447/HelloWorldFrontend.git"
                 #if ! ls | grep "HelloWorldFrontend" > /dev/null
                 #then
