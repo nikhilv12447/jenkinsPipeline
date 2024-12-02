@@ -1,0 +1,30 @@
+pipeline{
+    agent any
+    parameters {
+        string defaultValue: 'main', name: 'branch', trim: true
+    }
+    stages{
+        stage("Build"){
+            steps{
+                sh '''
+                repo="git@github.com:nikhilv12447/HelloWorldFrontend.git"
+                if ! ls | grep "HelloWorldFrontend" > /dev/null
+                then
+                    #git clone ${repo} 
+                    echo "cloning git repo"
+                fi
+                echo "checkout ${branch}"
+                #git checkout ${branch}
+                #npm install
+                #npm run build-server
+                '''
+            }
+        }
+
+        stage("Deploy"){
+            steps{
+                echo "Deploying"
+            }
+        }
+    }
+}
