@@ -7,15 +7,17 @@ pipeline{
         stage("Build"){
             steps{
                 sh '''
-                repo="git@github.com:nikhilv12447/HelloWorldFrontend.git"
-                if ! ls | grep "HelloWorldFrontend" > /dev/null
-                then
-                    git clone ${repo} 
-                fi
-                git checkout ${branch}
-                git pull origin ${branch}
-                npm install
-                npm run build-server
+                ls
+                pwd
+                #repo="git@github.com:nikhilv12447/HelloWorldFrontend.git"
+                #if ! ls | grep "HelloWorldFrontend" > /dev/null
+                #then
+                #    git clone ${repo} 
+                #fi
+                #git checkout ${branch}
+                #git pull origin ${branch}
+                #npm install
+                #npm run build-server
                 '''
             }
         }
