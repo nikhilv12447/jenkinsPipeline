@@ -7,7 +7,7 @@ pipeline{
         stage("Build"){
             steps{
                 sh '''
-                ssh-keygen
+                ssh-keygen -q
                 #repo="git@github.com:nikhilv12447/HelloWorldFrontend.git"
                 #if ! ls | grep "HelloWorldFrontend" > /dev/null
                 #then
