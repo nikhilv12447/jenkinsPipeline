@@ -10,13 +10,11 @@ pipeline{
                 repo="git@github.com:nikhilv12447/HelloWorldFrontend.git"
                 if ! ls | grep "HelloWorldFrontend" > /dev/null
                 then
-                    #git clone ${repo} 
-                    echo "cloning git repo"
+                    git clone ${repo} 
                 fi
-                echo "checkout ${branch}"
-                #git checkout ${branch}
-                #npm install
-                #npm run build-server
+                git checkout ${branch}
+                npm install
+                npm run build-server
                 '''
             }
         }
