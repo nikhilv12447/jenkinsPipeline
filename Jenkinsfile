@@ -21,7 +21,7 @@ pipeline{
                 git checkout ${branch}
                 git pull origin ${branch}
                 pwd
-                npm install
+                /var/lib/jenkins/.nvm/versions/node/v20.16.0/bin/npm install
                 npm run build-server
                 '''
             }
