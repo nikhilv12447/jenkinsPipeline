@@ -13,6 +13,7 @@ pipeline{
                     git clone ${repo} 
                 fi
                 git checkout ${branch}
+                git pull origin ${branch}
                 npm install
                 npm run build-server
                 '''
