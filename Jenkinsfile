@@ -12,6 +12,7 @@ pipeline{
                 then
                     git clone ${repo} 
                 fi
+                git fetch origin ${branch}
                 git checkout ${branch}
                 git pull origin ${branch}
                 npm install
