@@ -12,6 +12,11 @@ pipeline{
                 then
                     git clone ${repo} 
                 fi
+
+                if ! git remote | grep "origin" > /dev/null
+                then
+                    git remote add origin ${repo}
+                fi
                 git fetch origin ${branch}
                 git checkout ${branch}
                 git pull origin ${branch}
