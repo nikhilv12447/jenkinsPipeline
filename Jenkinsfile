@@ -20,6 +20,7 @@ pipeline{
                 git fetch origin ${branch}
                 git checkout ${branch}
                 git pull origin ${branch}
+                pwd
                 npm install
                 npm run build-server
                 '''
