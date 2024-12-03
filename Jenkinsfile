@@ -20,8 +20,9 @@ pipeline{
                 git fetch origin ${branch}
                 git checkout ${branch}
                 git pull origin ${branch}
+                echo #{PATH}
                 . ~/.nvm/nvm.sh
-                npm -v
+                nvm -v
                 #npm run build-server
                 '''
             }
