@@ -27,7 +27,7 @@ pipeline{
                     nvm install 20.16.0
                 fi
                 npm install
-                #npm run build-server
+                npm run build-server
                 '''
             }
         }
