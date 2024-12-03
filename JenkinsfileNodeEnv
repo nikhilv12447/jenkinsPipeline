@@ -21,7 +21,7 @@ pipeline{
                 git checkout ${branch}
                 git pull origin ${branch}
                 pwd
-                npm -v
+                npm -v 
                 npm run build-server
                 '''
             }
