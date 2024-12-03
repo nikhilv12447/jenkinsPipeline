@@ -22,7 +22,11 @@ pipeline{
                 git pull origin ${branch}
                 echo #{PATH}
                 . ~/.nvm/nvm.sh
-                nvm -v
+                if ! node -v > /dev/null
+                then
+                    nvm install 20.16.0
+                fi
+                npm install
                 #npm run build-server
                 '''
             }
