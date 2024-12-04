@@ -7,23 +7,34 @@ pipeline{
         string defaultValue: 'main', name: 'branch', trim: true
     }
     stages{
+        environment {
+            dirName = "git@github.com:nikhilv12447/${dirName}.git"
+        }
         stage("Build"){
             steps{
                 sh '''
                 export PATH="$PATH:/home/jenkins/.nvm/versions/node/v20.16.0/bin"
-                rm -rf ${dirName}
-                repo="git@github.com:nikhilv12447/${dirName}.git"
+                
                 if ! ls | grep "${dirName}" > /dev/null
                 then
                     git clone ${repo} 
                 fi
                 cd ${dirName}
+
                 if ! git remote | grep "origin" > /dev/null
                 then
                     git remote add origin ${repo}
                 fi
-                git fetch origin ${branch}
-                git checkout ${branch}
+
+                if ! git branch | grep "${branch}" 
+                    git fetch origin ${branch}
+                    git checkout ${branch}
+                then
+                elif [[ git branch --show-current != ${branch} ]]
+                then
+                    git checkout ${branch}                    
+                fi
+
                 git pull origin ${branch}
                 echo #{PATH}
                 if ! node -v > /dev/null
