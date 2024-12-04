@@ -29,9 +29,6 @@ pipeline{
                 fi
                 npm install
                 npm run build-server
-                tar -zcvf build.tar.gz build
-                scp -r build.tar.gz beta@helloWorld.beta:~/builds
-                ssh -t beta@helloWorld.beta 'cd builds && ./start_server.sh'
                 exit 0
                 '''
             }
@@ -39,7 +36,12 @@ pipeline{
 
         stage("Deploy"){
             steps{
-                echo "Deploying"
+                sh '''
+                tar -zcvf build.tar.gz build
+                scp -r build.tar.gz beta@helloWorld.beta:~/builds
+                ssh -t beta@helloWorld.beta 'cd builds && ./start_server.sh'
+                exit 0
+                '''
             }
         }
     }
