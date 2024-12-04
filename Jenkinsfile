@@ -31,7 +31,7 @@ pipeline{
                 npm run build-server
                 tar -zcvf build.tar.gz build
                 scp -r build.tar.gz beta@helloWorld.beta:~/builds
-                sh -t beta@helloWorld.beta 'cd builds && ./start_server.sh'
+                ssh -t beta@helloWorld.beta 'cd builds && ./start_server.sh'
                 '''
             }
         }
