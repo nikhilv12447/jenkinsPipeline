@@ -37,6 +37,7 @@ pipeline{
         stage("Deploy"){
             steps{
                 sh '''
+                pwd
                 tar -zcvf build.tar.gz build
                 scp -r build.tar.gz beta@helloWorld.beta:~/builds
                 ssh -t beta@helloWorld.beta 'cd builds && ./start_server.sh'
