@@ -8,7 +8,7 @@ pipeline{
     }
     stages{
         environment {
-            dirName = "git@github.com:nikhilv12447/${dirName}.git"
+            repo = "git@github.com:nikhilv12447/${dirName}.git"
         }
         stage("Build"){
             steps{
