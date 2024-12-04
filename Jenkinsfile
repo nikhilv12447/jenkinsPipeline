@@ -42,6 +42,7 @@ pipeline{
                 sh '''
                 pwd
                 tar -zcvf build.tar.gz ./${dirName}/build
+                ssh -t beta@helloWorld.beta 'cd builds && rm -rf build.tar.gz'
                 scp -r build.tar.gz beta@helloWorld.beta:~/builds
                 ssh -t beta@helloWorld.beta 'cd builds && ./start_server.sh'
                 exit 0
