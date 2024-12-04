@@ -7,6 +7,7 @@ pipeline{
         stage("Build"){
             steps{
                 sh '''
+                export PATH="$PATH:/home/beta/.nvm/versions/node/v20.16.0/bin"
                 repo="git@github.com:nikhilv12447/HelloWorldFrontend.git"
                 if ! ls | grep "HelloWorldFrontend" > /dev/null
                 then
@@ -21,13 +22,15 @@ pipeline{
                 git checkout ${branch}
                 git pull origin ${branch}
                 echo #{PATH}
-                . ~/.nvm/nvm.sh
                 if ! node -v > /dev/null
                 then
                     nvm install 20.16.0
                 fi
                 npm install
                 npm run build-server
+                tar -zcvf build.tar.gz build
+                scp -r build.tar.gz beta@helloWorld.beta:~/builds
+                sh -t beta@helloWorld.beta 'cd builds && ./start_server.sh'
                 '''
             }
         }
