@@ -25,9 +25,9 @@ pipeline{
                 fi
 
                 if ! git branch | grep "${branch}" 
+                then
                     git fetch origin ${branch}
                     git checkout ${branch}
-                then
                 elif [[ git branch --show-current != ${branch} ]]
                 then
                     git checkout ${branch}                    
