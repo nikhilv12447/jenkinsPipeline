@@ -7,7 +7,7 @@ pipeline{
         stage("Build"){
             steps{
                 sh '''
-                export PATH="$PATH:/home/beta/.nvm/versions/node/v20.16.0/bin"
+                export PATH="$PATH:/home/jenkins/.nvm/versions/node/v20.16.0/bin"
                 rm -rf HelloWorldFrontend
                 repo="git@github.com:nikhilv12447/HelloWorldFrontend.git"
                 if ! ls | grep "HelloWorldFrontend" > /dev/null
