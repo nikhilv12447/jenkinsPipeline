@@ -7,13 +7,11 @@ pipeline{
         string defaultValue: 'main', name: 'branch', trim: true
     }
     stages{
-        environment {
-            repo = "git@github.com:nikhilv12447/${dirName}.git"
-        }
         stage("Build"){
             steps{
                 sh '''
                 export PATH="$PATH:/home/jenkins/.nvm/versions/node/v20.16.0/bin"
+                repo="git@github.com:nikhilv12447/${dirName}.git"
                 
                 if ! ls | grep "${dirName}" > /dev/null
                 then
