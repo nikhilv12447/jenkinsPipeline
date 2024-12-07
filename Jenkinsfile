@@ -49,11 +49,18 @@ pipeline{
         stage("Deploy"){
             steps{
                 sh '''
-                cd ${dirName}
-                tar -zcvf build.tar.gz ./build
-                ssh -t beta@helloWorld.beta 'cd builds && rm -rf build.tar.gz'
-                scp -r build.tar.gz beta@helloWorld.beta:~/builds
+                cd ./${dirName}/build
+                tar -zcvf buildServer.tar.gz ./server
+                tar -zcvf buildClient.tar.gz ./client
+                
+                ssh -t beta@helloWorld.beta 'cd builds && rm -rf buildServer.tar.gz'
+                ssh -t beta@helloWorld.beta 'cd /var/www/helloWorld && rm -rf buildClient.tar.gz'
+
+                scp -r buildServer.tar.gz beta@helloWorld.beta:~/builds
+                scp -r buildClient.tar.gz beta@helloWorld.beta:/var/www/helloWorld
+
                 ssh -t beta@helloWorld.beta 'cd builds && ./start_server.sh'
+                ssh -t beta@helloWorld.beta 'cd /var/www/helloWorld && tar -zxvf buildClient.tar.gz'
                 exit 0
                 '''
             }
