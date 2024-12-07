@@ -34,13 +34,13 @@ pipeline{
                 fi
 
                 git pull origin ${branch}
-                echo #{PATH}
+
                 if ! node -v > /dev/null
                 then
                     nvm install 20.16.0
                 fi
                 npm install
-                npm run build-server
+                npm run build-prod
                 exit 0
                 '''
             }
@@ -49,7 +49,6 @@ pipeline{
         stage("Deploy"){
             steps{
                 sh '''
-                pwd
                 cd ${dirName}
                 tar -zcvf build.tar.gz ./build
                 ssh -t beta@helloWorld.beta 'cd builds && rm -rf build.tar.gz'
